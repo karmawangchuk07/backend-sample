@@ -1,12 +1,21 @@
-import { Route,Routes } from "react-router-dom"
+import { Route,Routes, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
-import Review from "./pages/Review"
+import ReviewCard from "./components/ReviewCard"
+import Navbar from "./components/Navbar"
+import Signup from "./pages/Signup"
+
+
 function App(){
+
+  const location=useLocation()
+  const hidenavBar=["/signup","/signin"]
+  const shouldhideNavbar=hidenavBar.includes(location.pathname)
   return <div>
+    {!shouldhideNavbar&&<Navbar/>}
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/review" element={<Review/>}/>
-      {/* <Route path="/review" element={<Review/>}/> */}
+      <Route path="/review" element={<ReviewCard/>}/>
+      <Route path="/signup" element={<Signup/>}/>
     </Routes>
     </div>
 }
