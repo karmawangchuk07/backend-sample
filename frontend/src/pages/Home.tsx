@@ -1,6 +1,6 @@
 import img from '../assets/asset/simple.jpg';
 import Navbar from '../components/Navbar';
-import About from './About';
+import About from '../components/About';
 import Contact from './Contact';
 const Home = () => {
   return (

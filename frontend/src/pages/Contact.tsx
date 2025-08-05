@@ -22,7 +22,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen"id="contact">
       {/* Contact Form Section */}
       <div className="w-3/4 bg-gray-200 flex items-center justify-center mt-8 ml-20 mb-8 shadow-red-500">
         <div className="text-center p-8">

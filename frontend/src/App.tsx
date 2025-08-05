@@ -2,7 +2,8 @@ import { Route,Routes, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
 import ReviewCard from "./components/ReviewCard"
 import Navbar from "./components/Navbar"
-import Signup from "./pages/Signup"
+import Restaurant from "./pages/Restaurent"
+// import Signup from "./pages/Signup"
 
 
 function App(){
@@ -15,7 +16,8 @@ function App(){
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/review" element={<ReviewCard/>}/>
-      <Route path="/signup" element={<Signup/>}/>
+      <Route path="/restaurants" element={<Restaurant/>}/>
+      {/* <Route path="/signup" element={<Signup/>}/> */}
     </Routes>
     </div>
 }

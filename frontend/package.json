@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@karma123/med-common": "^1.0.0",
+    "@karma123/review-common": "^1.0.0",
     "axios": "^1.11.0",
     "lucide-react": "^0.532.0",
     "react": "^19.1.0",

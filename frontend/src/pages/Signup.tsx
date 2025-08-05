@@ -1,14 +1,18 @@
+// import { Auth } from "../components/Auth"
+// import { Quote } from "../components/quote"
+// const Signup = () => {
+//   return (
+//     <div>
+//         <div className="grid grid-cols-1 lg:grid-cols-2">
+//             <div>
+//                 <Auth type="signup"/>
+//             </div>
+//             <div className="hidden lg:block">
+//                 <Quote/>
+//             </div>
+//         </div>
+//     </div>
+//   )
+// }
 
-const Signup = () => {
-  return (
-    <div className="bg-transparent flex ">
-        <div className="flex justify-center items-center">
-            <form action="submit">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem maiores, dignissimos ullam earum vitae esse similique voluptates voluptatibus harum nam.
-            </form>
-        </div>
-    </div>
-  )
-}
-
-export default Signup
+// export default Signup

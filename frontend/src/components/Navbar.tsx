@@ -69,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = () => {
     if (path === '/review' || path.startsWith('/review')) return 'review'
     if (path === '/about' || path.startsWith('/about')) return 'about'
     if (path === '/contact' || path.startsWith('/contact')) return 'contact'
-    if (path === '/restaurant' || path.startsWith('/restaurant')) return 'restaurant'
+    if (path === '/restaurants' || path.startsWith('/restaurants')) return 'restaurants' // Fixed: changed to 'restaurants'
     return 'home'
   }
 
@@ -88,18 +88,21 @@ const Navbar: React.FC<NavbarProps> = () => {
     console.log('Route changed, current page:', currentPage) // Debug log
   }, [location.pathname])
 
-  // Determine if we're on review page
-  const isReviewPage: boolean = currentPage === 'review'
-  console.log('Is review page:', isReviewPage) // Debug log
-  
+  // Define pages that should have the special styling
+  const specialPages: string[] = ['review', 'restaurants'] // Fixed: matches the route detection
+  const isSpecialPage: boolean = specialPages.includes(currentPage)
+
+  console.log('Current page:', currentPage) // Debug log
+  console.log('Is special page:', isSpecialPage) // Debug log
+
   // Dynamic color classes based on route
-  const textColor: string = isReviewPage ? 'text-black' : 'text-white'
-  const hoverColor: string = isReviewPage ? 'hover:text-green-600' : 'hover:text-green-400'
-  const logoAccentColor: string = isReviewPage ? 'text-green-600' : 'text-green-400'
-  const navBg: string = isReviewPage ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200' : 'bg-transparent'
-  const mobileMenuBg: string = isReviewPage ? 'bg-white border border-gray-200' : 'bg-gray-900/90 backdrop-blur-sm'
-  const mobileTextColor: string = isReviewPage ? 'text-black' : 'text-white'
-  const mobileHoverColor: string = isReviewPage ? 'hover:text-green-600 hover:bg-green-50' : 'hover:text-green-400 hover:bg-green-400/10'
+  const textColor: string = isSpecialPage ? 'text-black' : 'text-white'
+  const hoverColor: string = isSpecialPage ? 'hover:text-green-600' : 'hover:text-green-400'
+  const logoAccentColor: string = isSpecialPage ? 'text-green-600' : 'text-green-400'
+  const navBg: string = isSpecialPage ? 'bg-white/95 backdrop-blur-sm border-b border-gray-200' : 'bg-transparent'
+  const mobileMenuBg: string = isSpecialPage ? 'bg-white border border-gray-200' : 'bg-gray-900/90 backdrop-blur-sm'
+  const mobileTextColor: string = isSpecialPage ? 'text-black' : 'text-white'
+  const mobileHoverColor: string = isSpecialPage ? 'hover:text-green-600 hover:bg-green-50' : 'hover:text-green-400 hover:bg-green-400/10'
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${navBg}`}>
@@ -121,10 +124,10 @@ const Navbar: React.FC<NavbarProps> = () => {
           <div className="hidden md:flex items-center">
             <div className="flex items-baseline space-x-8">
               <button 
-                onClick={() => handleNavigation('/restaurant')}
-                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isReviewPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
+                onClick={() => handleNavigation('/restaurants')} // Fixed: changed to '/restaurants'
+                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isSpecialPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
               >
-                Restaurant
+                Restaurants
               </button>
               
               {/* Reviews button - YOUR EXACT PATTERN */}
@@ -133,20 +136,39 @@ const Navbar: React.FC<NavbarProps> = () => {
                   console.log('Reviews button clicked!') // Debug log
                   navigate('/review')
                 }}
-                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isReviewPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
+                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isSpecialPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
               >
                 Reviews
               </button>
               
-              <button 
-                onClick={() => handleNavigation('/about')}
-                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isReviewPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
+              <button onClick={() => {
+                if (location.pathname === "/") {
+                  const el = document.getElementById("About");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  }
+                } else {
+                  navigate("/#About"); // This will be handled in Home.tsx
+                }
+                setOpen(false);
+              }}
+                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isSpecialPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
               >
                 About Us
               </button>
               <button 
-                onClick={() => handleNavigation('/contact')}
-                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isReviewPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
+                onClick={() => {
+                if (location.pathname === "/") {
+                  const el = document.getElementById("contact");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  }
+                } else {
+                  navigate("/#contact"); // Fixed: should navigate to #contact, not #About
+                }
+                setOpen(false);
+              }}
+                className={`${textColor} ${hoverColor} px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isSpecialPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} hover:-translate-y-0.5`}
               >
                 Contact
               </button>
@@ -168,7 +190,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               <div className="relative" ref={dropdownRef}>
                 <button 
                   onClick={toggleDrop}
-                  className={`${textColor} ${hoverColor} p-2 rounded-full ${isReviewPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} transition-all duration-300`}
+                  className={`${textColor} ${hoverColor} p-2 rounded-full ${isSpecialPage ? 'hover:bg-green-50' : 'hover:bg-green-400/10'} transition-all duration-300`}
                 >
                   <User className="h-6 w-6" />
                 </button>
@@ -244,10 +266,10 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className={`md:hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className={`px-2 pt-2 pb-3 ${mobileMenuBg} rounded-lg mt-2 shadow-lg`}>
             <button 
-              onClick={() => handleNavigation('/restaurant')}
+              onClick={() => handleNavigation('/restaurants')} // Fixed: changed to '/restaurants'
               className={`${mobileTextColor} ${mobileHoverColor} block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 w-full text-left`}
             >
-              Restaurant
+              Restaurants
             </button>
             <button 
               onClick={() => {
