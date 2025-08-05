@@ -1,8 +1,8 @@
 import express from "express"
-import { createReview } from "../controller/createorder"
+import { Creator } from "../controller/Creator"
 const reviewRouter= express.Router()
 
-reviewRouter.post('/review',createReview)
+reviewRouter.post('/review',Creator)
 
 
 export default reviewRouter;

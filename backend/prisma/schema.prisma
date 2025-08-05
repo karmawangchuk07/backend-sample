@@ -48,3 +48,10 @@ model Review{
   userId String? @db.ObjectId
   user user? @relation(fields: [userId],references: [id])
 }
+model Contact {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  email   String
+  message String
+  createdAt DateTime @default(now())
+}

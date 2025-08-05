@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 dotenv.config();
 import bcrypt from 'bcrypt'
 import prisma from '../prisma';
-import { error } from 'console';
 
 
 export const newUser=async(req:Request,res:Response)=>{
